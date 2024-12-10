@@ -1,0 +1,15 @@
+{
+    "appId": "com.semanticspace.app",
+    "files": ["dist-electron", "dist-vue"],
+    "extraResources": ["dist-electron/preload.cjs", "data/data.csv", "data/data_memory.csv"],
+    "mac": {
+        "target": "dmg"
+    },
+    "linux": {
+        "target": "AppImage",
+        "category": "Utility"
+    },
+    "win": {
+        "target": ["portable", "msi"]
+    }
+}
