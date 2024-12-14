@@ -1,1 +1,1 @@
-An app to make learning Hebrew easier. Data used in the app is retrieved from https://www.pealim.com.
+An app to make learning Hebrew easier. Data used in the app is retrieved from https://www.pealim.com and https://www.sefaria.org.
