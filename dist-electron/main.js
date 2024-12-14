@@ -187,9 +187,6 @@ app.on('ready', async () => {
                 break;
         }
         const data = await readCsv(path.join(app.getAppPath(), isDev() ? '/data/' + file : '../data/' + file));
-        console.log('bookIndex: ' + bookIndex);
-        console.log('verseIndex: ' + JSON.stringify(verseIndex));
-        console.log('file: ' + file);
         const lemmas = data.filter((d) => parseInt(d.Book) == parseInt(bookIndex) && parseInt(d.Chapter) == parseInt(verseIndex[2]) && parseInt(d.Verse) == parseInt(verseIndex[3]));
         const result = [];
         lemmas.forEach((l) => {
