@@ -1,1 +1,1 @@
-{"root":["./src/main.ts","./src/types.d.ts","./src/vite-env.d.ts","./src/services/eventbus.ts","./src/app.vue","./src/components/wordlist.vue","./src/views/memory.vue","./src/views/vocabulary.vue"],"version":"5.6.3"}
+{"root":["./src/main.ts","./src/types.d.ts","./src/vite-env.d.ts","./src/services/eventbus.ts","./src/app.vue","./src/components/wordlist.vue","./src/views/bible.vue","./src/views/lemmas.vue","./src/views/memory.vue","./src/views/vocabulary.vue"],"version":"5.6.3"}

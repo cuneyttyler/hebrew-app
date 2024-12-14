@@ -26,17 +26,13 @@
               <td><a v-bind:href="word.Url" target="_blank">{{ word.Hebrew }}</a></td>
               <td>{{ word.Transliteration }}</td>
               <td>
-                  <!-- <a v-bind:href="word.Root_Url" v-if="word.Root_Url" target="_blank">{{ word.Root }}</a> -->
-                  <a href="#" @click="showRoot(word)" v-if="word.Root_Url">{{ word.Root }}</a>
-                  <span v-if="!word.Root_Url">{{ word.Root }}</span>
+                  <a href="#" @click="showRoot(word)">{{ word.Root }}</a>
               </td>
               <td>
                   {{ word.POS }}
               </td>
               <td>
-                  <!-- <a v-bind:href="word.POS_Pattern_Url" v-if="word.POS_Pattern_Url" target="_blank">{{ word.POS_Pattern }}</a> -->
-                   <a href="#" @click="showPattern(word)" v-if="word.POS_Pattern_Url">{{ word.POS_Pattern }}</a>
-                  <span v-if="!word.POS_Pattern_Url">{{ word.POS_Pattern }}</span>
+                   <a href="#" @click="showPattern(word)">{{ word.POS_Pattern }}</a>
               </td>
               <td>{{ word.Translation }}</td>
               <td>
@@ -52,13 +48,13 @@
     </table>
     <nav aria-label="Page navigation">
       <ul class="pagination justify-content-center">
-        <li class="page-item" :class="{disabled: isFirstPage()}"><a class="page-link" href="#" @click="changePage(1)">First</a></li>
-        <li class="page-item" :class="{disabled: isFirstPage()}"><a class="page-link" href="#" @click="changePage(page - 1)">Previous</a></li>
-        <li class="page-item" v-if="!isFirstPage()"><a class="page-link" href="#" @click="changePage(page - 1)">{{page - 1}}</a></li>
+        <li class="page-item" :class="{disabled: isFirstPage()}"><a class="page-link" href="#!" @click="changePage(1)">First</a></li>
+        <li class="page-item" :class="{disabled: isFirstPage()}"><a class="page-link" href="#!" @click="changePage(page - 1)">Previous</a></li>
+        <li class="page-item" v-if="!isFirstPage()"><a class="page-link" href="#!" @click="changePage(page - 1)">{{page - 1}}</a></li>
         <li class="page-item disabled"><a class="page-link" href="#">{{page}}</a></li>
-        <li class="page-item" v-if="!isLastPage() && pageCount > 2"><a class="page-link" href="#" @click="changePage(page + 1)">{{page + 1}}</a></li>
-        <li class="page-item" :class="{disabled: isLastPage()}"><a class="page-link" href="#" @click="changePage(page + 1)">Next</a></li>
-        <li class="page-item" :class="{disabled: isLastPage()}"><a class="page-link" href="#" @click="changePage(pageCount)">Last</a></li>
+        <li class="page-item" v-if="!isLastPage() && pageCount > 2"><a class="page-link" href="#!" @click="changePage(page + 1)">{{page + 1}}</a></li>
+        <li class="page-item" :class="{disabled: isLastPage()}"><a class="page-link" href="#!" @click="changePage(page + 1)">Next</a></li>
+        <li class="page-item" :class="{disabled: isLastPage()}"><a class="page-link" href="#!" @click="changePage(pageCount)">Last</a></li>
       </ul>
     </nav>
   </div>
@@ -93,15 +89,20 @@ export default defineComponent({
       return this.filteredWords().length
     }
   },
+  watch: {
+    // @ts-ignore
+    search: function(val) {
+      this.page = 1
+    }
+  },
   methods: {
     filteredWords() {
-      this.search = this.search.trim()
-      if(!this.search || this.search == '') return this.words
+      if(!this.search || this.search.trim() == '') return this.words
 
       return this.words.filter((word) => {
-        return word.Hebrew.toLowerCase().includes(this.search.toLowerCase()) || word.Transliteration.toLowerCase().includes(this.search.toLowerCase()) 
-        || word.Root.toLowerCase().includes(this.search.toLowerCase()) || word.POS.toLowerCase().includes(this.search.toLowerCase()) 
-        || word.POS_Pattern.toLowerCase().includes(this.search.toLowerCase()) || word.Translation.toLowerCase().includes(this.search.toLowerCase())
+        return word.Hebrew.toLowerCase().includes(this.search.trim().toLowerCase()) || word.Transliteration.toLowerCase().includes(this.search.trim().toLowerCase()) 
+        || word.Root.toLowerCase().includes(this.search.trim().toLowerCase()) || word.POS.toLowerCase().includes(this.search.trim().toLowerCase()) 
+        || word.POS_Pattern.toLowerCase().includes(this.search.trim().toLowerCase()) || word.Translation.toLowerCase().includes(this.search.trim().toLowerCase())
       })
 
     },
